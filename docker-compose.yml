@@ -12,7 +12,6 @@ services:
       - dbbackups:/backups
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      # If you need to create multiple database you can add coma separated databases eg gis,data
       - POSTGRES_DB=store
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
@@ -24,7 +23,7 @@ services:
       - "25432:5432"
     restart: on-failure
     healthcheck:
-      test: "PGPASSWORD=docker pg_isready -h 127.0.0.1 -U docker -d gis"
+      test: "PGPASSWORD=docker pg_isready -h 127.0.0.1 -U docker -d stores"
 
   server:
     image: postgrest/postgrest
